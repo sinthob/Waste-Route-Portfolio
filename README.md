@@ -2,17 +2,17 @@
 
 > **หมายเหตุสำคัญ**
 >
-> โครงการนี้เป็นโครงงานจบการศึกษาระดับปริญญาตรีของผู้จัดทำ โดยพัฒนาร่วมกับเพื่อนในทีม
+> โครงการนี้เป็นโครงงานจบการศึกษาระดับปริญญาตรีของผู้จัดทำ โดยพัฒนาร่วมกันกับเพื่อนร่วมทีม
 > ระบบฉบับใช้งานสำหรับการทดสอบเชิงปฏิบัติการจำเป็นต้องเข้าสู่ระบบ (Login) ก่อนใช้งาน แม้ข้อมูลภายในจะเป็นข้อมูลทดสอบ แต่มีการอ้างอิงตำแหน่งและบริบทจากจุดจริงในจังหวัดขอนแก่น เพื่อรองรับการทดสอบกรณีใช้งานเสมือนจริง (Real-World Cases)
 > เพื่อป้องกันความเสี่ยงจากการแก้ไขหรือใช้งานข้อมูลในลักษณะที่ไม่เหมาะสมโดยผู้ทดสอบภายนอก Repository นี้จึงเปิดเผยเฉพาะส่วน Demo, System Architecture และข้อมูลเชิงภาพรวมที่จำเป็นต่อการนำเสนอผลงาน
 
-## Project Overview
+## ภาพรวมของโปรเจค
 
 เว็บแอปสำหรับวางแผนเส้นทางเก็บขยะที่ลดค่าใช้จ่ายมากที่สุดของเทศบาล โดยช่วยให้เจ้าหน้าที่จัดรอบวิ่งรถได้แม่นยำขึ้น และให้พนักงานขับรถเห็นเส้นทางที่ควรวิ่งจริงบนแผนที่
 
 จุดเด่นคือการคำนวณเส้นทางจากข้อมูลหน้างาน เช่น ปริมาณขยะ ความจุรถ ระยะทาง และต้นทุนเชื้อเพลิง เพื่อให้หน่วยงานตัดสินใจได้เร็วขึ้นภายใต้ทรัพยากรที่จำกัด
 
-## Problem This Project Solves
+## ปัญหาที่โปรเจคนี้ช่วยเเก้ไข
 
 - ปริมาณขยะเพิ่มขึ้น แต่จำนวนรถ คน และงบประมาณไม่ได้เพิ่มตาม
 - การวางแผนเส้นทางแบบเดิมใช้เวลามาก และทำให้เกิดเส้นทางอ้อม/ซ้ำ
@@ -21,7 +21,89 @@
 
 ผลลัพธ์ที่คาดหวังคือ ลดระยะทางและเวลาในการเก็บขยะ ลดต้นทุนการปฏิบัติงาน และเพิ่มความครอบคลุมของการให้บริการในชุมชน
 
-## Why This Stack
+## Demo
+
+### 1) Login และ Register
+
+**Login**
+
+![waste-route-login](waste-route-portfolio-pics/waste-route-login.png)
+
+**Register**
+
+![waste-route-register](waste-route-portfolio-pics/waste-route-register.png)
+
+### 2) Home
+
+![waste-route-home-page](waste-route-portfolio-pics/waste-route-home-page.png)
+
+### 3) ดูข้อมูลพนักงาน
+
+**รายชื่อพนักงานทั้งหมด**
+
+![waste-route-staff-lists](waste-route-portfolio-pics/waste-route-staff-lists.png)
+
+**รายละเอียดพนักงานรายบุคคล**
+
+![waste-route-staff-info](waste-route-portfolio-pics/waste-route-staff-info.png)
+
+**แก้ไขข้อมูลพนักงานรายบุคคล**
+
+![waste-route-staff-info-edit](waste-route-portfolio-pics/waste-route-staff-info-edit.png)
+
+### 4) ดูข้อมูลรถเก็บขยะ
+
+**รายชื่อรถเก็บขยะทั้งหมด**
+
+![vehicle-lists](waste-route-portfolio-pics/vehicle-lists.png)
+
+**รายละเอียดรถเก็บขยะรายคัน**
+
+![vehicle-info](waste-route-portfolio-pics/vehicle-info.png)
+
+**กำหนดคนขับให้รถเก็บขยะ**
+
+![Assign-driver](waste-route-portfolio-pics/Assign-driver.png)
+
+### 5) ดูข้อมูลจุดเก็บขยะ
+
+**รายชื่อจุดเก็บขยะทั้งหมด**
+
+![collection-point-lists](waste-route-portfolio-pics/collection-point-lists.png)
+
+**รายละเอียดจุดเก็บขยะ**
+
+![collection-point-info](waste-route-portfolio-pics/collection-point-info.png)
+
+**เพิ่มหรือแก้ไขจุดเก็บขยะ**
+
+![add-new-collection-point](waste-route-portfolio-pics/add-new-collection-point.png)
+
+### 6) ข้อมูลเส้นทางประจำวัน
+
+**เส้นทางรวมของรถทุกคันในวันนั้น**
+
+![all-vehicle-route](waste-route-portfolio-pics/all-vehicle-route.png)
+
+**เส้นทางประจำวันของรถเฉพาะ 1 คัน**
+
+![individual-route](waste-route-portfolio-pics/individual-route.png)
+
+**ปัญหาระหว่างปฏิบัติงานที่พนักงานรายงานเข้ามา**
+
+![on-operation-problems](waste-route-portfolio-pics/on-operation-problems.png)
+
+### 7) Dashboard ภาพรวมการปฏิบัติการ
+
+![report-dashbord-01](waste-route-portfolio-pics/report-dashbord-01.png)
+
+![report-dashbord-02](waste-route-portfolio-pics/report-dashbord-02.png)
+
+### 8) คำขอเพิ่มจุดเก็บขยะ/แจ้งปัญหาจากประชาชนทั่วไป
+
+![problems-report-dashboard](waste-route-portfolio-pics/problems-report-dashboard.png)
+
+## Stack ที่เลือกใช้
 
 - Go + Fiber: เหมาะกับงาน API ที่ต้องเร็วและรองรับงานพร้อมกันจำนวนมาก ทำให้ระบบตอบสนองได้ดีในงานภาคสนาม
 - GORM + PostgreSQL/MySQL: จัดการข้อมูลเส้นทางและจุดเก็บได้เป็นระบบ ปลอดภัย และดูแลต่อยอดง่าย
@@ -39,13 +121,14 @@
 flowchart LR
 		U[เจ้าหน้าที่/พนักงานขับรถ] --> FE[Front-end Container<br/>Angular + Nginx]
 		FE -->|HTTPS REST API| BE[Back-end Container<br/>Go Fiber API]
-		BE -->|SQL| DB[(PostgreSQL/MySQL)]
+		BE -->|SQL Queries| DB[(PostgreSQL/MySQL)]
+    DB -->|Data| BE
 		BE -->|HTTP JSON API| VRP[VRP Solver Container<br/>Python]
 		VRP -->|Route Result JSON| BE
 		BE -->|Route + Status| FE
 ```
 
-การไหลของข้อมูลแบบย่อ:
+การไหลของข้อมูลแบบย่อสำหรับ Feature การคำนวณเส้นทางรถเก็บขยะ:
 
 - Front-end ส่งคำขอคำนวณเส้นทางไป Back-end
 - Back-end เตรียมข้อมูลจุดเก็บ/รถ/ข้อจำกัด แล้วเรียก VRP Solver
@@ -57,7 +140,7 @@ flowchart LR
 - เวอร์ชันปัจจุบันใช้การเรียก API แบบ synchronous ระหว่าง Back-end กับ VRP Solver
 - สามารถต่อยอดเป็น job queue ได้เมื่อปริมาณงานสูงหรือมีหลายแผนวิ่งพร้อมกัน
 
-## Key Technical Challenges (ช่วงโชว์ของ)
+## Key Technical Challenges
 
 - ปัญหา: งานคำนวณเส้นทางมีความซับซ้อนสูงเมื่อจำนวนจุดเก็บเพิ่มขึ้น
   วิธีแก้: แยก Python VRP Solver เป็นคนละ container และเรียกผ่าน API เพื่อ scale งานคำนวณแยกจาก business API
@@ -68,7 +151,7 @@ flowchart LR
   ผลลัพธ์: ตรรกะคำนวณชัดเจนขึ้น ดูแลรักษาง่าย และเพิ่ม constraint ใหม่ได้เร็ว
 
 - ปัญหา: การเชื่อมระบบข้ามภาษา (Go และ Python) เสี่ยงเรื่อง format/contract ไม่ตรงกัน
-  วิธีแก้: กำหนดสัญญา API แบบ JSON ชัดเจน (request/response schema) และแยกหน้าที่แต่ละ service
+  วิธีแก้: กำหนดสัญญา API แบบ JSON ชัดเจน (request/response schema) และแยกหน้าที่แต่ละ service ให้ชัด
   ผลลัพธ์: ลด bug จาก integration และ deploy แต่ละ service แยกกันได้ปลอดภัยขึ้น
 
 ## Theory Behind The Code (VRP แบบเข้าใจง่าย)
@@ -77,9 +160,11 @@ flowchart LR
 
 ภาพง่าย ๆ คือ:
 
-- มีจุดเริ่มต้นเดียว (depot)
+- มีจุดเริ่มต้นเดียว (depot) เเละรถต้องกลับมายังจุดเริ่มต้นเป็นจุดสุดท้าย
 - มีหลายจุดเก็บขยะ (collection points)
-- รถแต่ละคันมีความจุจำกัด และมีเวลาปฏิบัติงานจำกัด
+- จุดเก็บขยะเเต่ละจุดมีความจุุจำกัด
+  (เเยกประเภทเป็นความจุขยะทั่วไป เเละขยะรีไซเคิล)
+- รถแต่ละคันมีความจุจำกัด (เเยกประเภทเป็นความจุขยะทั่วไป เเละขยะรีไซเคิล)
 - เป้าหมายคือ ลดต้นทุนรวม (ระยะทาง + เวลา + ค่าเชื้อเพลิง + ค่าสึกหรอรถ)
 
 ### Objective (อธิบายแบบสั้น)
@@ -98,21 +183,23 @@ $$
 
 ### Constraints หลักที่ใช้จริง
 
-- ความจุรถ: ปริมาณขยะรวมบนเส้นทางของรถแต่ละคันต้องไม่เกินความจุ
-- ความครบถ้วนของบริการ: ทุกจุดเก็บต้องถูกให้บริการตามเงื่อนไขที่กำหนด
-- เงื่อนไขปฏิบัติงาน: คุมเวลา/รอบวิ่ง/ข้อจำกัดหน้างานตาม policy ของหน่วยงาน
+- ความจุรถ: ปริมาณขยะรวมบนเส้นทางของรถแต่ละคันต้องไม่เกินความจุ (เเยกเป็นส่วนความจุขยะรีไซเคิลเเละขยะทั่วไป)
+- ความครบถ้วนของบริการ: ทุกจุดเก็บต้องถูกให้บริการตามเงื่อนไขที่กำหนด (ความจุรถรวมทั้งหมดต้องมากกว่าความจุรวมทั้งหมดของจุดเก็บขยะในเส้นทาง เพื่อมั่นใจว่าสามารถเก็บขยะครบทุกจุด)
 
-สำหรับโปรเจกต์นี้ แนวคิดถูกปรับใช้ในรูปแบบที่รองรับการเก็บหลายประเภทขยะ และสามารถนำไปต่อยอดเป็น dynamic rerouting เมื่อมีเหตุการณ์หน้างาน
+สำหรับโปรเจกต์นี้ แนวคิดถูกปรับใช้ในรูปแบบที่รองรับการเก็บหลายประเภทขยะ และสามารถนำไปต่อยอดเป็น dynamic rerouting ในอนาคต (เช่นใช้คู่กันกับ IoT ในอนาคตเพื่ออัพเดทข้อมูลเส้นทางที่เเม่นยำเเละ Real Time มากขึ้น)
 
 ### Credit Placeholders
 
+- เพื่อนร่วมทีมโปรเจค Fullstack and setup architecure
+  - [ศักจานนท์ กมลดุง]
+  - [https://github.com/sakjanonkk]
+
 - สมการ/แนวคิดหลักที่อ้างอิง:
-  - [ใส่ชื่อผู้วิจัย/หนังสือ/ปี]
-  - [ใส่ DOI หรือ URL แหล่งอ้างอิง]
+  - [ธนาตญ์ ปัทมากรโกมล]
+  - [เค้าโครงวิทยานิพนธ์ วิศวกรรมศาสตรมหาบัณฑิต, มหาวิทยาลัยขอนแก่น]
+
 - เครดิตผู้พัฒนาโค้ด Python ส่วน VRP (Solver Container):
-  - [ใส่ชื่อเจ้าของโค้ด]
-  - [ใส่ Repo/Commit/License]
-  - [ใส่ขอบเขตที่นำมาใช้: เช่น solver, data prep, tuning]
+  - [นาย ฉัตรปกรณ์ คงศรีสรรค์]
 
 ## How The Code Is Connected (2 Containers + API)
 
