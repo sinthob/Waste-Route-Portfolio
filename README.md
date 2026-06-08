@@ -1,5 +1,9 @@
 # Waste Management Route Optimization
 
+<p align="right"><a href="#thai-version">TH</a> | <a href="#english-version">EN</a></p>
+
+<a id="thai-version"></a>
+
 > **หมายเหตุสำคัญ**
 >
 > โครงการนี้เป็นโครงงานจบการศึกษาระดับปริญญาตรีของผู้จัดทำ โดยพัฒนาร่วมกันกับเพื่อนร่วมทีม
@@ -103,7 +107,7 @@
 
 ![problems-report-dashboard](waste-route-portfolio-pics/problems-report-dashboard.png)
 
-### 9) Video Demo
+### 9) Video Demo realtime GPS
 
 [▶ Watch Demo on YouTube](https://youtu.be/bVQGFt6eIVQ)
 
@@ -230,4 +234,233 @@ $$
 
 ---
 
-หากต้องการเวอร์ชันเต็มสำหรับเอกสารโครงการ (หลักการและเหตุผล, วัตถุประสงค์, เครื่องมือทั้งหมด) สามารถต่อจากส่วนนี้ได้ทันที
+<a id="english-version"></a>
+
+# Waste Management Route Optimization (English Version)
+
+> **Important Note**
+>
+> This project is the author's undergraduate graduate project, developed collaboratively with teammates.
+> The operational test version requires user login before access. Although the data used is test data, it is based on real locations and real-world context in Khon Kaen province to support realistic testing scenarios (Real-World Cases).
+> To prevent risks from improper data modification or misuse by external testers, this repository publicly provides only demo materials, system architecture, and general project information required for portfolio presentation.
+
+## Project Overview
+
+This web application is designed for municipal waste collection route planning with the objective of minimizing operational costs. It helps officers create more accurate daily routes and allows drivers to follow practical routes directly on the map.
+
+Its key strength is route optimization based on field data such as waste volume, vehicle capacity, distance, and fuel cost, enabling faster and more informed decisions under limited resources.
+
+## Problems This Project Solves
+
+- Waste volume keeps increasing, while fleet size, manpower, and budget do not scale at the same rate.
+- Traditional manual planning is time-consuming and often causes overlapping or inefficient routes.
+- Fuel and maintenance costs rise due to non-optimized routing.
+- Some service areas are not covered consistently, affecting sanitation and public health.
+
+Expected outcomes are reduced collection distance and time, lower operating costs, and improved service coverage in communities.
+
+## Demo
+
+### 1) Login and Register
+
+**Login**
+
+![waste-route-login](waste-route-portfolio-pics/waste-route-login.png)
+
+**Register**
+
+![waste-route-register](waste-route-portfolio-pics/waste-route-register.png)
+
+### 2) Home
+
+![waste-route-home-page](waste-route-portfolio-pics/waste-route-home-page.png)
+
+### 3) Staff Information
+
+**All Staff List**
+
+![waste-route-staff-lists](waste-route-portfolio-pics/waste-route-staff-lists.png)
+
+**Individual Staff Details**
+
+![waste-route-staff-info](waste-route-portfolio-pics/waste-route-staff-info.png)
+
+**Edit Individual Staff Details**
+
+![waste-route-staff-info-edit](waste-route-portfolio-pics/waste-route-staff-info-edit.png)
+
+### 4) Waste Collection Vehicle Information
+
+**All Waste Collection Vehicles**
+
+![vehicle-lists](waste-route-portfolio-pics/vehicle-lists.png)
+
+**Individual Vehicle Details**
+
+![vehicle-info](waste-route-portfolio-pics/vehicle-info.png)
+
+**Assign Driver to Vehicle**
+
+![Assign-driver](waste-route-portfolio-pics/Assign-driver.png)
+
+### 5) Collection Point Information
+
+**All Collection Points**
+
+![collection-point-lists](waste-route-portfolio-pics/collection-point-lists.png)
+
+**Collection Point Details**
+
+![collection-point-info](waste-route-portfolio-pics/collection-point-info.png)
+
+**Add or Edit Collection Point**
+
+![add-new-collection-point](waste-route-portfolio-pics/add-new-collection-point.png)
+
+### 6) Daily Route Information
+
+**All Vehicle Routes for the Day**
+
+![all-vehicle-route](waste-route-portfolio-pics/all-vehicle-route.png)
+
+**Daily Route for One Specific Vehicle**
+
+![individual-route](waste-route-portfolio-pics/individual-route.png)
+
+**Operational Problems Reported by Staff During Collection**
+
+![on-operation-problems](waste-route-portfolio-pics/on-operation-problems.png)
+
+### 7) Operations Dashboard Overview
+
+![report-dashbord-01](waste-route-portfolio-pics/report-dashbord-01.png)
+
+![report-dashbord-02](waste-route-portfolio-pics/report-dashbord-02.png)
+
+### 8) Public Requests for New Collection Points / Issue Reports
+
+![problems-report-dashboard](waste-route-portfolio-pics/problems-report-dashboard.png)
+
+### 9) Real-Time GPS Video Demo
+
+[▶ Watch Demo on YouTube](https://youtu.be/bVQGFt6eIVQ)
+
+## Selected Tech Stack
+
+- Go + Fiber: Suitable for high-performance APIs and strong concurrency support, which helps ensure good responsiveness in field operations.
+- GORM + PostgreSQL/MySQL: Provides structured, secure, and maintainable management of routes and collection point data.
+- Angular + Angular Material: Enables a professional, readable, and practical UI so officers can use the system effectively.
+- Google Maps API: Makes routes and collection points visible in one map context, reducing operational ambiguity.
+- Docker + Docker Compose + Nginx: Provides stable and repeatable deployment across environments and simplifies multi-service management.
+
+---
+
+## System Architecture
+
+The current production architecture is separated into 3 containers for clear responsibility boundaries: Front-end, Back-end, and VRP Solver.
+
+```mermaid
+flowchart LR
+		U[Officers/Drivers] --> FE[Front-end Container<br/>Angular + Nginx]
+		FE -->|HTTPS REST API| BE[Back-end Container<br/>Go Fiber API]
+		BE -->|SQL Queries| DB[(PostgreSQL/MySQL)]
+    DB -->|Data| BE
+		BE -->|HTTP JSON API| VRP[VRP Solver Container<br/>Python]
+		VRP -->|Route Result JSON| BE
+		BE -->|Route + Status| FE
+```
+
+Simplified data flow for the waste collection route optimization feature:
+
+- Front-end sends route calculation requests to Back-end.
+- Back-end prepares collection points, vehicles, and constraints, then calls the VRP Solver.
+- VRP Solver returns optimized routes to Back-end.
+- Back-end stores results in the database and returns route data for map visualization on Front-end.
+
+Queueing note:
+
+- The current version uses synchronous API calls between Back-end and VRP Solver.
+- It can be extended to a job queue model for higher workloads or multiple concurrent route plans.
+
+## Key Technical Challenges
+
+- Challenge: Route computation complexity grows significantly as the number of collection points increases.
+  Solution: The Python VRP Solver is deployed as a separate container and integrated via API, allowing compute scaling independently from the business API.
+  Result: Core system responsiveness remains stable, and solver compute capacity can be scaled flexibly.
+
+- Challenge: Real constraints are multi-dimensional (vehicle capacity, multiple waste types, fuel cost, and vehicle wear/depreciation).
+  Solution: A unified input model was designed so Back-end can send all constraints in a consistent structure to the solver.
+  Result: Calculation logic is clearer, easier to maintain, and faster to extend with new constraints.
+
+- Challenge: Cross-language integration (Go and Python) creates risks of contract and format mismatch.
+  Solution: A clear JSON API contract (request/response schema) was defined, with explicit service boundaries.
+  Result: Integration bugs are reduced, and each service can be deployed independently with lower risk.
+
+## Theory Behind The Code (VRP in Simple Terms)
+
+This project applies the Vehicle Routing Problem (VRP) concept to determine which vehicle should visit which points and in what sequence, under practical waste collection constraints.
+
+In simple terms:
+
+- There is one depot, and vehicles return to the depot at the end.
+- There are multiple collection points.
+- Each collection point has limited demand/capacity values by waste type (general and recyclable).
+- Each vehicle has limited capacity by waste type (general and recyclable).
+- The objective is to minimize total cost (distance + time + fuel + vehicle wear/depreciation).
+
+### Objective (Short Explanation)
+
+The system minimizes the following objective:
+
+$$
+\min Z = \sum_{v=1}^{V} \sum_{i=0}^{n} \sum_{j=0}^{n} d_{ij} \cdot x_{ijv}
+$$
+
+Where:
+
+- $d_{ij}$ = distance from point $i$ to point $j$
+- $x_{ijv}$ = 1 if vehicle $v$ travels from $i$ to $j$, otherwise 0
+- $V$ = total number of vehicles, $n$ = total number of collection points
+
+### Main Constraints Used
+
+- Vehicle capacity: Total collected waste on each route must not exceed vehicle capacity (separated into recyclable and general waste capacity).
+- Service completeness: Every required collection point must be served under defined constraints (total vehicle capacity must exceed total demand along the route to ensure full service coverage).
+
+For this project, the approach is adapted for multi-type waste collection and can be extended to dynamic rerouting in the future (for example, with IoT data for more accurate and real-time updates).
+
+### Credit Placeholders
+
+- Teammate (Fullstack and architecture setup)
+  - [ศักจานนท์ กมลดุง]
+  - [https://github.com/sakjanonkk]
+
+- Referenced equation/core theory:
+  - [ธนาตญ์ ปัทมากรโกมล]
+  - [Thesis Proposal, Master of Engineering, Khon Kaen University]
+
+- Credit for Python VRP code (Solver Container):
+  - [นาย ฉัตรปกรณ์ คงศรีสรรค์]
+
+## How The Code Is Connected (2 Containers + API)
+
+To improve flexibility and team maintainability, the architecture is separated into 2 core services:
+
+1. Core API Container (Go)
+
+- Receives requests from the web interface
+- Manages collection points, vehicles, and operational constraints
+- Calls the VRP Solver via HTTP API
+- Stores results and returns routes for map visualization
+
+2. VRP Solver Container (Python)
+
+- Receives VRP problem input in JSON format
+- Computes optimized routes based on objective and constraints
+- Returns route results to the Go API for downstream use
+
+Benefits of this separation:
+
+- Solver can be upgraded or replaced without breaking the main API.
+- Heavy compute workload can scale independently from business API workload.
+- Ownership and contribution boundaries are clear across services.
