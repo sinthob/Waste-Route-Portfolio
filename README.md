@@ -103,6 +103,10 @@
 
 ![problems-report-dashboard](waste-route-portfolio-pics/problems-report-dashboard.png)
 
+### 9) Video Demo
+
+[▶ Watch Demo on YouTube](https://youtu.be/bVQGFt6eIVQ)
+
 ## Stack ที่เลือกใช้
 
 - Go + Fiber: เหมาะกับงาน API ที่ต้องเร็วและรองรับงานพร้อมกันจำนวนมาก ทำให้ระบบตอบสนองได้ดีในงานภาคสนาม
